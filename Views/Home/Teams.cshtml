@@ -28,8 +28,58 @@
     </div>
 
     <div class="container">
-        <h1>Current F1 Teams</h1>
 
+
+        <div class="header1">
+            <h2>F1 Teams Details</h2>
+            <p style="display: inline-block; margin-left: 10px;">
+                <b><a asp-controller="Teams" asp-action="Create" class="fancy-button">Create New</a></b>
+            </p>
+        </div>
+
+        @model List<Teams>
+        <table>
+            <thead>
+                <tr>
+                    <th>Team Number</th>
+                    <th>Team Name</th>
+                    <th>Head Quarters</th>
+                    <th>Team Principal</th>
+                    <th>Chassis</th>
+                    <th>Engine</th>
+                    <th>Drivers</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any()) // Check if Model is not null and has items
+                {
+                    @foreach (var team in Model)
+                    {
+                        <tr>
+                            <td>@team.Id</td>
+                            <td>@team.TeamName</td>
+                            <td>@team.Headquarters</td>
+                            <td>@team.TeamPrincipal</td>
+                            <td>@team.Chassis</td>
+                            <td>@team.Engine</td>
+                            <td>@team.Drivers</td>
+                            <td><a class="fancy-button" href="@Url.Action("Edit", "Teams", new { id = team.Id } )">Edit</a></td>
+                            <td><a class="fancy-delete-button" href="@Url.Action("Delete", "Teams", new { id = team.Id } )">Delete</a></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="9">No teams found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h1>Current F1 Teams</h1>
         <!-- F1 Teams Table -->
         <table>
             <thead>
@@ -162,55 +212,7 @@
             </tbody>
         </table>
 
-        <div class="header1">
-            <h2>F1 Teams Details</h2>
-            <p style="display: inline-block; margin-left: 10px;">
-                <b><a asp-controller="Teams" asp-action="Create" class="fancy-button">Create New</a></b>
-            </p>
-        </div>
-
-        @model List<Teams>
-        <table>
-            <thead>
-                <tr>
-                    <th>Team Number</th>
-                    <th>Team Name</th>
-                    <th>Head Quarters</th>
-                    <th>Team Principal</th>
-                    <th>Chassis</th>
-                    <th>Engine</th>
-                    <th>Drivers</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model != null && Model.Any()) // Check if Model is not null and has items
-                {
-                    @foreach (var team in Model)
-                    {
-                        <tr>
-                            <td>@team.Id</td>
-                            <td>@team.TeamName</td>
-                            <td>@team.Headquarters</td>
-                            <td>@team.TeamPrincipal</td>
-                            <td>@team.Chassis</td>
-                            <td>@team.Engine</td>
-                            <td>@team.Drivers</td>
-                            <td><a class="fancy-button" href="@Url.Action("Edit", "Teams", new { id = team.Id } )" >Edit</a></td>
-                            <td><a class="fancy-delete-button" href="@Url.Action("Delete", "Teams", new { id = team.Id } )" >Delete</a></td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="9">No teams found.</td> <!-- Display a message if no teams are found -->
-                    </tr>
-                }
-            </tbody>
-        </table>
-
+       
 
 
     </div>
