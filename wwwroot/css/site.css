@@ -235,8 +235,8 @@ th {
 }
 
 /* Style for fancy buttons */
-.fancy-button, .fancy-delete-button {
-    padding: 3% 10px;
+.fancy-button, .fancy-delete-button, .fancy-data-button {
+    padding: 5px 10px;
     margin: 0px;
     border: none;
     border-radius: 12px;
@@ -255,6 +255,18 @@ th {
         box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
         transform: scale(1.05);
     }
+
+.fancy-data-button {
+    background-color: orange;
+    color: white;
+}
+
+    .fancy-data-button:hover {
+        background-color: darkorange;
+        box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+    }
+
 
 .fancy-delete-button {
     background-color: #f44336;

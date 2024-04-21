@@ -215,21 +215,19 @@
                 </tr>
             </tbody>
         </table>
-   
-            <div class="header1">
-                <h2>F1 Teams Details</h2>
-                <p style="display: inline-block; margin-left: 10px;">
-                <b><a asp-action="Create" class="fancy-button">Create New</a></b>
-                </p>
-            </div>
 
-
+        <div class="header1">
+            <h2>F1 Teams Details</h2>
+            <p style="display: inline-block; margin-left: 10px;">
+                <b><a asp-controller="Teams" asp-action="Create" class="fancy-button">Create New</a></b>
+            </p>
+        </div>
 
         @model List<Teams>
         <table>
             <thead>
                 <tr>
-                    <th>No.</th>
+                    <th>Team Number</th>
                     <th>Team Name</th>
                     <th>Head Quarters</th>
                     <th>Team Principal</th>

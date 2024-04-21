@@ -1,12 +1,8 @@
-﻿
-
-@model F1Championship.Models.Teams
+﻿@model F1Championship.Models.Teams
 
 @{
     ViewData["Title"] = "Create";
 }
-
-
 
 <!DOCTYPE html>
 <html>
@@ -62,11 +58,15 @@
         </div>
     </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
+    <div style="margin-top: 20px;">
+        <a asp-action="Index" class="fancy-data-button">Back to List</a>
     </div>
-
-
 
 </body>
 </html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
