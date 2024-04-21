@@ -219,7 +219,7 @@
             <div class="header1">
                 <h2>F1 Teams Details</h2>
                 <p style="display: inline-block; margin-left: 10px;">
-                    <b><a asp-action="Create">Create New</a></b>
+                <b><a asp-action="Create" class="fancy-button">Create New</a></b>
                 </p>
             </div>
 
@@ -253,8 +253,8 @@
                             <td>@team.Chassis</td>
                             <td>@team.Engine</td>
                             <td>@team.Drivers</td>
-                            <td><a href="@Url.Action("Edit", "Teams", new { id = team.Id } )" class="header1">Edit</a></td>
-                            <td><a href="@Url.Action("Delete", "Teams", new { id = team.Id } )" class="header1">Delete</a></td>
+                            <td><a class="fancy-button" href="@Url.Action("Edit", "Teams", new { id = team.Id } )" >Edit</a></td>
+                            <td><a class="fancy-delete-button" href="@Url.Action("Delete", "Teams", new { id = team.Id } )" >Delete</a></td>
                         </tr>
                     }
                 }

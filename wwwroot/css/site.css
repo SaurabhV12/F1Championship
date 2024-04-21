@@ -240,7 +240,6 @@ th {
     margin: 0px;
     border: none;
     border-radius: 12px;
-    cursor: pointer;
     font-size: 16px;
     transition: all 0.3s ease;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
@@ -395,7 +394,7 @@ body {
 }
 
     .header1 a {
-        color: #000;
+        color: #fff;
         padding: 5px;
         text-decoration: none;
         transition: background-color 0.3s;
