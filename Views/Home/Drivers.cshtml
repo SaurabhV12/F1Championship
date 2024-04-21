@@ -1,0 +1,332 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>F1 Drivers</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        function deletebutton(button) {
+            // Get the delete confirmation popup and buttons
+            const popup = document.getElementById('delete-confirmation-popup');
+            const confirmDeleteButton = document.getElementById('confirm-delete');
+            const cancelDeleteButton = document.getElementById('cancel-delete');
+
+            // Get the table row (tr) element of the clicked button
+            const row = button.parentElement.parentElement;
+
+            // Show the delete confirmation popup
+            popup.classList.remove('hidden');
+
+            // Handle the "Delete" button click
+            confirmDeleteButton.onclick = function () {
+                // Delete the row
+                row.remove();
+
+                // Hide the popup
+                popup.classList.add('hidden');
+            };
+
+            // Handle the "Cancel" button click
+            cancelDeleteButton.onclick = function () {
+                // Hide the popup
+                popup.classList.add('hidden');
+            };
+        }
+
+        // Function to edit driver details
+        function editDriver(button) {
+            // Find the row of the clicked button
+            const row = button.closest('tr');
+
+            // Get the values from the row
+            const driverId = row.querySelector('td:nth-child(1)').innerText;
+            const driverName = row.querySelector('td:nth-child(2)').innerText;
+            const TeamName = row.querySelector('td:nth-child(3)').innerText;
+            const countryOfOrigin = row.querySelector('td:nth-child(4)').innerText;
+
+            // Populate the popup form with the values
+            document.getElementById('field1').value = driverId; // For driver ID
+            document.getElementById('field2').value = driverName; // For driver name
+            document.getElementById('field3').value = TeamName; // For TeamName
+            document.getElementById('field4').value = countryOfOrigin; // For country of origin
+
+            // Display the popup form
+            document.getElementById('edit-popup').classList.remove('hidden');
+        }
+
+        // Function to close the popup form
+        function closePopup() {
+            document.getElementById('edit-popup').classList.add('hidden');
+        }
+
+        // Handle form submission
+        document.getElementById('edit-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Get the form values
+            const formData = new FormData(event.target);
+
+            // Handle form submission (e.g., send data to a server or update the row directly)
+            // Implement your form submission logic here
+
+            // Close the popup form
+            closePopup();
+        });
+
+        // Attach the function to the Edit buttons
+        document.querySelectorAll('.fancy-button').forEach(button => {
+            button.addEventListener('click', function () {
+                editDriver(this);
+            });
+        });
+
+
+
+    </script>
+</head>
+<body>
+    <div class="header">
+        <a href="@Url.Action("Index", "Home")" class="logo">
+            <img src="~/img/f1.png" alt="F1 Logo" class="logo-image">
+            <b>F1 Championship</b>
+        </a>
+        <div class="header-right">
+            <a class="active" href="@Url.Action("Index", "Home")">Home</a>
+            <a href="@Url.Action("Teams", "Home")">Teams</a>
+            <a href="@Url.Action("Drivers", "Home")">Drivers</a>
+            <a href="@Url.Action("About", "Home")">About</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Current F1 Drivers</h1>
+
+        <!-- Table of F1 Drivers -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Driver ID</th>
+                    <th>Driver Name</th>
+                    <th>Team</th>
+                    <th>Country</th> <!-- New column header for Country -->
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example rows for drivers -->
+                <tr>
+                    <td>1</td>
+                    <td>Lewis Hamilton</td>
+                    <td>Mercedes-AMG Petronas</td>
+                    <td>United Kingdom</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>George Russell</td>
+                    <td>Mercedes-AMG Petronas</td>
+                    <td>United Kingdom</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Max Verstappen</td>
+                    <td>Red Bull Racing</td>
+                    <td>Netherlands</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Sergio Perez</td>
+                    <td>Red Bull Racing</td>
+                    <td>Mexico</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Charles Leclerc</td>
+                    <td>Scuderia Ferrari</td>
+                    <td>Monaco</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Carlos Sainz</td>
+                    <td>Scuderia Ferrari</td>
+                    <td>Spain</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Lando Norris</td>
+                    <td>McLaren</td>
+                    <td>United Kingdom</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Oscar Piastri</td>
+                    <td>McLaren</td>
+                    <td>Australia</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Pierre Gasly</td>
+                    <td>Alpine</td>
+                    <td>France</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Esteban Ocon</td>
+                    <td>Alpine</td>
+                    <td>France</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Fernando Alonso</td>
+                    <td>Aston Martin</td>
+                    <td>Spain</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Lance Stroll</td>
+                    <td>Aston Martin</td>
+                    <td>Canada</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Kevin Magnussen</td>
+                    <td>Haas</td>
+                    <td>Denmark</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Nico Hülkenberg</td>
+                    <td>Haas</td>
+                    <td>Germany</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Valtteri Bottas</td>
+                    <td>Alfa Romeo</td>
+                    <td>Finland</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Zhou Guanyu</td>
+                    <td>Alfa Romeo</td>
+                    <td>China</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Yuki Tsunoda</td>
+                    <td>AlphaTauri</td>
+                    <td>Japan</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Nyck de Vries</td>
+                    <td>AlphaTauri</td>
+                    <td>Netherlands</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Alexander Albon</td>
+                    <td>Williams</td>
+                    <td>Thailand</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Logan Sargeant</td>
+                    <td>Williams</td>
+                    <td>United States</td> <!-- Country of origin -->
+                    <td><button class="fancy-button" onclick="editDriver(this)">Edit</button></td>
+                    <td><button class="fancy-delete-button" onclick="deletebutton(this)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="edit-popup" class="hidden popup-form">
+        <div class="popup-content">
+            <h3>Edit Details</h3>
+            <form id="edit-form">
+                <label for="field1">Field 1:</label>
+                <input type="text" id="field1" name="field1" disabled>
+
+                <label for="field2">Field 2:</label>
+                <input type="text" id="field2" name="field2">
+
+                <label for="field3">Field 3:</label>
+                <input type="text" id="field3" name="field3">
+
+                <label for="field4">Field 4:</label>
+                <input type="text" id="field4" name="field4">
+
+                <div class="buttons">
+                    <button type="submit">Save</button>
+                    <button type="button" onclick="closePopup()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Popup for Deletion -->
+    <div id="delete-confirmation-popup" class="popup-form hidden">
+        <div class="popup-content">
+            <h3>Delete Row</h3>
+            <p>Are you sure you want to delete this row?</p>
+            <div class="buttons">
+                <button id="confirm-delete" class="fancy-delete-button">Delete</button>
+                <button id="cancel-delete" class="fancy-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+        <p>© 2024 F1 Championship. All rights reserved.</p>
+    </footer>
+</body>
+</html>

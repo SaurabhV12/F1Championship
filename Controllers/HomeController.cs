@@ -1,16 +1,18 @@
-﻿using F1Championship.Models;
+﻿using F1Championship.Data;
+using F1Championship.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace F1Championship.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly F1ChampionshipContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(F1ChampionshipContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -18,9 +20,48 @@ namespace F1Championship.Controllers
             return View();
         }
 
+        public IActionResult Teams()
+        {
+            List<Teams> teamsList = _context.Teams.ToList();
+            return View(teamsList);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        //public IActionResult Teams()
+        //{
+        //    return View();
+        //}
+
+        public IActionResult Drivers()
+        {
+            return View();
+        }
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,TeamName,Headquarters,TeamPrincipal,Chassis,Engine,Drivers")] Teams teams)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(teams);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(teams);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

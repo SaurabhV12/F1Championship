@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using F1Championship.Data;
 namespace F1Championship
 {
     public class Program
@@ -5,6 +8,8 @@ namespace F1Championship
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<F1ChampionshipContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("F1ChampionshipContext") ?? throw new InvalidOperationException("Connection string 'F1ChampionshipContext' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

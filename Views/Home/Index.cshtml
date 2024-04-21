@@ -8,24 +8,87 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F1 Championship</title>
-    <link href="~/Content/StyleSheet.css" rel="stylesheet" /> <!-- Reference to your CSS file -->
+    <link href="~/css/site.css" rel="stylesheet" />
+    <script>
+        let currentSlide = 0;
+
+        function showSlide(slideIndex) {
+            const slidesContainer = document.querySelector('.slides');
+            const slidesCount = document.querySelectorAll('.slide').length;
+
+            if (slideIndex >= slidesCount) {
+                currentSlide = 0;
+            } else if (slideIndex < 0) {
+                currentSlide = slidesCount - 1;
+            } else {
+                currentSlide = slideIndex;
+            }
+
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateIndicators();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function updateIndicators() {
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set up navigation buttons
+            document.querySelector('.next').addEventListener('click', nextSlide);
+            document.querySelector('.prev').addEventListener('click', prevSlide);
+
+            // Auto-slide every 3 seconds
+            setInterval(nextSlide, 3000);
+
+            // Create indicators
+            const indicatorsContainer = document.createElement('div');
+            indicatorsContainer.classList.add('indicators');
+            document.querySelector('.slider').appendChild(indicatorsContainer);
+
+            // Add indicators for each slide
+            const slidesCount = document.querySelectorAll('.slide').length;
+            for (let i = 0; i < slidesCount; i++) {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                indicator.addEventListener('click', () => showSlide(i));
+                indicatorsContainer.appendChild(indicator);
+            }
+
+            updateIndicators();
+        });
+
+    </script>
 </head>
 
 <body>
     <div class="header">
-        <a href="index.html" class="logo">
+        <a href="@Url.Action("Index", "Home")" class="logo">
             <img src="~/img/f1.png" alt="F1 Logo" class="logo-image">
             <b>F1 Championship</b>
         </a>
         <div class="header-right">
-            <a class="active" href="~/Home/Index">Home</a>
-            <a href="~/Teams/Index">Teams</a>
-            <a href="~/Drivers/Index">Drivers</a>
-            <a href="~/Points/Index">Points</a>
-            <a href="~/Contact/Index">Contact</a>
-            <a href="~/About/Index">About</a>
+            <a class="active" href="@Url.Action("Index", "Home")">Home</a>
+            <a href="@Url.Action("Teams", "Home")">Teams</a>
+            <a href="@Url.Action("Drivers", "Home")">Drivers</a>
+            <a  href="@Url.Action("About", "Home")">About</a>
         </div>
     </div>
+
     <section class="hero">
         <div class="hero-overlay"></div>
         <h1>Welcome to F1 Championship</h1>
@@ -33,10 +96,9 @@
     </section>
     <div class="slider">
         <div class="slides">
-            <div class="slide" style="background-image: url('~/img/redbull.avif');"></div>
-            <div class="slide" style="background-image: url('~/img/mercedes.avif');"></div>
-            <div class="slide" style="background-image: url('~/img/ferrari.avif');"></div>
-            <div class="slide" style="background-image: url('~/img/alpine.avif');"></div>
+            <div class="slide" style="background-image: url('@Url.Content("~/img/f15.png")');"></div>
+            <div class="slide" style="background-image: url('@Url.Content("~/img/f13.png")');"></div>
+            <div class="slide" style="background-image: url('@Url.Content("~/img/f11.png")');"></div>
         </div>
         <button class="prev">&lt;</button>
         <button class="next">&gt;</button>
@@ -49,21 +111,21 @@
             <h2>Latest News</h2>
             <ul class="news-list">
                 <li class="news-item">
-                    <img src="~/img/impact.avif" alt="Monaco GP" class="news-image">
+                    <img src="~/img/impact.png" alt="Monaco GP" class="news-image">
                     <div class="news-content">
                         <a href="#">Race results: The latest from Australia</a>
                         <p>The Australian Grand Prix was an exciting race with unexpected turns and intense competition.</p>
                     </div>
                 </li>
                 <li class="news-item">
-                    <img src="~/img/news.avif" alt="Team updates" class="news-image">
+                    <img src="~/img/news.png" alt="Team updates" class="news-image">
                     <div class="news-content">
                         <a href="#">Team updates: New driver announcements</a>
                         <p>Several teams have announced new drivers for the upcoming races, bringing fresh talent to the track.</p>
                     </div>
                 </li>
                 <li class="news-item">
-                    <img src="~/img/news1.avif" alt="Technical innovations" class="news-image">
+                    <img src="~/img/news1.png" alt="Technical innovations" class="news-image">
                     <div class="news-content">
                         <a href="#">Technical innovations: New aerodynamics</a>
                         <p>Teams are introducing new aerodynamics to improve speed and performance in the upcoming races.</p>
@@ -105,19 +167,19 @@
             <p>Get to know your favorite drivers.</p>
             <div class="races-grid">
                 <div class="driver-info">
-                    <img src="~/img/max.avif" alt="Max Verstappen">
+                    <img src="~/img/max.png" alt="Max Verstappen">
                     <div class="driver-details">
                         <strong>Max Verstappen:</strong> Current world champion.
                     </div>
                 </div>
                 <div class="driver-info">
-                    <img src="~/img/lewis.avif" alt="Lewis Hamilton">
+                    <img src="~/img/lewis.png" alt="Lewis Hamilton">
                     <div class="driver-details">
                         <strong>Lewis Hamilton:</strong> Seven-time world champion.
                     </div>
                 </div>
                 <div class="driver-info">
-                    <img src="~/img/charles.avif" alt="Charles Leclerc">
+                    <img src="~/img/charles.png" alt="Charles Leclerc">
                     <div class="driver-details">
                         <strong>Charles Leclerc:</strong> Young star from Ferrari.
                     </div>
