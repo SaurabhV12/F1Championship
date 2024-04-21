@@ -7,65 +7,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>F1 Championship</title>
-    <link href="~/css/site.css" rel="stylesheet" /> <!-- Reference to your CSS file -->
+    <title>F1 Teams</title>
+    <link href="~/css/site.css" rel="stylesheet" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        /* Inline styles go here, if needed */
-    </style>
-    <script>
-        // JavaScript functions go here
-        function editCSS(button) {
-            const row = button.closest('tr');
-            const teamNo = row.querySelector('td:nth-child(1)').innerText;
-            const TeamName = row.querySelector('td:nth-child(2)').innerText;
-            const headquarters = row.querySelector('td:nth-child(3)').innerText;
-            const teamPrincipal = row.querySelector('td:nth-child(4)').innerText;
-            const chassis = row.querySelector('td:nth-child(5)').innerText;
-            const engine = row.querySelector('td:nth-child(6)').innerText;
-            const drivers = row.querySelector('td:nth-child(7)').innerText;
-
-            document.getElementById('team-no').value = teamNo;
-            document.getElementById('team-name').value = TeamName;
-            document.getElementById('headquarters').value = headquarters;
-            document.getElementById('team-principal').value = teamPrincipal;
-            document.getElementById('chassis').value = chassis;
-            document.getElementById('engine').value = engine;
-            document.getElementById('drivers').value = drivers;
-
-            document.getElementById('edit-popup').classList.remove('hidden');
-        }
-
-        function closePopup() {
-            document.getElementById('edit-popup').classList.add('hidden');
-        }
-
-        document.getElementById('edit-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(event.target);
-
-            closePopup();
-        });
-
-        function deletebutton(button) {
-            const popup = document.getElementById('delete-confirmation-popup');
-            const confirmDeleteButton = document.getElementById('confirm-delete');
-            const cancelDeleteButton = document.getElementById('cancel-delete');
-            const row = button.parentElement.parentElement;
-
-            popup.classList.remove('hidden');
-
-            confirmDeleteButton.onclick = function () {
-                row.remove();
-                popup.classList.add('hidden');
-            };
-
-            cancelDeleteButton.onclick = function () {
-                popup.classList.add('hidden');
-            };
-        }
-    </script>
+    <script src="~/js/site.js"></script>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico.png" />
 </head>
 <body>
     <div class="header">

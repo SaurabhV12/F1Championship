@@ -7,72 +7,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>F1 Championship</title>
+    <title>F1 Home</title>
     <link href="~/css/site.css" rel="stylesheet" />
-    <script>
-        let currentSlide = 0;
-
-        function showSlide(slideIndex) {
-            const slidesContainer = document.querySelector('.slides');
-            const slidesCount = document.querySelectorAll('.slide').length;
-
-            if (slideIndex >= slidesCount) {
-                currentSlide = 0;
-            } else if (slideIndex < 0) {
-                currentSlide = slidesCount - 1;
-            } else {
-                currentSlide = slideIndex;
-            }
-
-            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-            updateIndicators();
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        function updateIndicators() {
-            const indicators = document.querySelectorAll('.indicator');
-            indicators.forEach((indicator, index) => {
-                if (index === currentSlide) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            // Set up navigation buttons
-            document.querySelector('.next').addEventListener('click', nextSlide);
-            document.querySelector('.prev').addEventListener('click', prevSlide);
-
-            // Auto-slide every 3 seconds
-            setInterval(nextSlide, 3000);
-
-            // Create indicators
-            const indicatorsContainer = document.createElement('div');
-            indicatorsContainer.classList.add('indicators');
-            document.querySelector('.slider').appendChild(indicatorsContainer);
-
-            // Add indicators for each slide
-            const slidesCount = document.querySelectorAll('.slide').length;
-            for (let i = 0; i < slidesCount; i++) {
-                const indicator = document.createElement('div');
-                indicator.classList.add('indicator');
-                indicator.addEventListener('click', () => showSlide(i));
-                indicatorsContainer.appendChild(indicator);
-            }
-
-            updateIndicators();
-        });
-
-    </script>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico.png" />
+    <script src="~/js/site.js"></script>
 </head>
 
 <body>
