@@ -19,14 +19,6 @@ namespace F1Championship.Controllers
             _context = context;
         }
 
-        // GET: Leagues
-        //public async Task<IActionResult> Index()
-        //{
-        //      return _context.Leagues != null ? 
-        //                  View(await _context.Leagues.ToListAsync()) :
-        //                  Problem("Entity set 'F1ChampionshipContext.Leagues'  is null.");
-        //}
-
         public IActionResult Index()
         {
             List<Leagues> leaguesList = _context.Leagues.ToList();

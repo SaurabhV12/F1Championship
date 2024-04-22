@@ -38,21 +38,14 @@ namespace F1Championship.Controllers
             return View(leaguesList);
         }
 
+        public IActionResult Dashboards()
+        {
+            return View();
+        }
         public IActionResult Create()
         {
             return View();
         }
-
-
-        //public IActionResult Teams()
-        //{
-        //    return View();
-        //}
-
-        //public IActionResult Drivers()
-        //{
-        //    return View();
-        //}
         public IActionResult About()
         {
             return View();
@@ -61,19 +54,6 @@ namespace F1Championship.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TeamName,Headquarters,TeamPrincipal,Chassis,Engine,Drivers")] Teams teams)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(teams);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(teams);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -19,14 +19,6 @@ namespace F1Championship.Controllers
             _context = context;
         }
 
-        // GET: Drivers
-        //public async Task<IActionResult> Index()
-        //{
-        //      return _context.Drivers != null ? 
-        //                  View(await _context.Drivers.ToListAsync()) :
-        //                  Problem("Entity set 'F1ChampionshipContext.Drivers'  is null.");
-        //}
-
         public IActionResult Index()
         {
             List<Drivers> driversList = _context.Drivers.ToList();
