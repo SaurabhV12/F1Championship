@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/F1Championship.styles.css" asp-append-version="true" /> 
-    <link href="~/css/site.css" rel="stylesheet" /> <!-- Reference to your CSS file -->
+    <link href="~/css/site.css" rel="stylesheet" /> 
 </head>
 <body>
     <div class="header">
@@ -24,6 +24,7 @@
             <a href="@Url.Action("About", "Home")">About</a>
         </div>
     </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

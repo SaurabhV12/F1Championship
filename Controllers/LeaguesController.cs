@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using F1Championship.Data;
 using F1Championship.Models;
+using Microsoft.Data.SqlClient;
 
 namespace F1Championship.Controllers
 {
@@ -58,12 +59,28 @@ namespace F1Championship.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(leagues);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(leagues);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException ex)
+                {
+                    if (ex.InnerException is SqlException sqlEx && sqlEx.Number == 547)
+                    {
+                        ModelState.AddModelError(string.Empty, "The selected team does not exist. Please choose a valid team.");
+                    }
+                    else
+                    {
+                        // Log or handle other types of exceptions
+                        ModelState.AddModelError(string.Empty, "An error occurred while saving the league. Please try again later.");
+                    }
+                }
             }
             return View(leagues);
         }
+
 
         // GET: Leagues/Edit/5
         public async Task<IActionResult> Edit(int? id)
