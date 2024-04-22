@@ -1,8 +1,6 @@
 ﻿@{
-    Layout = null; // Remove layout, if not required
+    Layout = null;
 }
-
-
 
 <!DOCTYPE html>
 <html>
@@ -23,7 +21,8 @@
             <a class="active" href="@Url.Action("Index", "Home")">Home</a>
             <a href="@Url.Action("Teams", "Home")">Teams</a>
             <a href="@Url.Action("Drivers", "Home")">Drivers</a>
-            <a href="@Url.Action("Leagues", "Home")">Drivers</a>
+            <a href="@Url.Action("Leagues", "Home")">Team Leagues</a>
+            <a href="@Url.Action("Dashboards", "Home")">Dashboards</a>
             <a href="@Url.Action("About", "Home")">About</a>
         </div>
     </div>
@@ -54,7 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-                @if (Model != null && Model.Any()) // Check if Model is not null and has items
+                @if (Model != null && Model.Any())
                 {
                     @foreach (var team in Model)
                     {
@@ -81,7 +80,7 @@
         </table>
 
         <h1>Current F1 Teams</h1>
-        <!-- F1 Teams Table -->
+
         <table>
             <thead>
                 <tr>
@@ -218,7 +217,6 @@
 
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="social-links">
             <a href="#">Facebook</a>

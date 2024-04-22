@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = null; // Set the layout to null if you don't want to use a shared layout
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -16,7 +16,6 @@
 
     <div class="header">
         <a href="@Url.Action("Index", "Home")" class="logo">
-            <!-- Use Razor syntax to generate URLs -->
             <img src="~/img/f1.png" alt="F1 Logo" class="logo-image">
             <b>F1 Championship</b>
         </a>
@@ -24,7 +23,8 @@
             <a class="active" href="@Url.Action("Index", "Home")">Home</a>
             <a href="@Url.Action("Teams", "Home")">Teams</a>
             <a href="@Url.Action("Drivers", "Home")">Drivers</a>
-            <a href="@Url.Action("Leagues", "Home")">Drivers</a>
+            <a href="@Url.Action("Leagues", "Home")">Team Leagues</a>
+            <a href="@Url.Action("Dashboards", "Home")">Dashboards</a>
             <a href="@Url.Action("About", "Home")">About</a>
         </div>
     </div>
@@ -33,7 +33,6 @@
         <h1>About Us</h1>
 
         <div class="team-container">
-            <!-- Team Member 1 -->
             <div class="team-member">
                 <img src="~/img/saurabh.png" alt="Person 1">
                 <h4>Saurabh Verma</h4>
@@ -47,7 +46,6 @@
                 </div>
             </div>
 
-            <!-- Team Member 2 -->
             <div class="team-member">
                 <img src="~/img/tushar.png" alt="Person 2">
                 <h4>Tushar Chotlani</h4>
@@ -61,7 +59,6 @@
                         </div>
             </div>
 
-            <!-- Team Member 3 -->
             <div class="team-member">
                 <img src="~/img/meet.png" alt="Person 3">
                 <h4>Meet Vora</h4>
@@ -75,7 +72,6 @@
                 </div>
             </div>
 
-            <!-- Team Member 4 -->
             <div class="team-member">
                 <img src="~/img/vinehs.png" alt="Person 4">
                 <h4>Vinesh Sangoi</h4>
@@ -101,14 +97,13 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="social-links">
             <a href="#">Facebook</a>
             <a href="#">Twitter</a>
             <a href="#">Instagram</a>
         </div>
-        <p>© 2024 F1 Championship. All rights reserved.</p>
+        <p>© @DateTime.Now.Year F1 Cars. All rights reserved.</p>
     </footer>
 
 </body>
