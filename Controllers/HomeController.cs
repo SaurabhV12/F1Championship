@@ -26,6 +26,18 @@ namespace F1Championship.Controllers
             return View(teamsList);
         }
 
+        public IActionResult Drivers()
+        {
+            List<Drivers> driversList = _context.Drivers.ToList();
+            return View(driversList);
+        }
+
+        public IActionResult Leagues()
+        {
+            List<Leagues> leaguesList = _context.Leagues.ToList();
+            return View(leaguesList);
+        }
+
         public IActionResult Create()
         {
             return View();
@@ -37,10 +49,10 @@ namespace F1Championship.Controllers
         //    return View();
         //}
 
-        public IActionResult Drivers()
-        {
-            return View();
-        }
+        //public IActionResult Drivers()
+        //{
+        //    return View();
+        //}
         public IActionResult About()
         {
             return View();

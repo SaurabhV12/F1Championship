@@ -15,5 +15,9 @@ namespace F1Championship.Data
         }
 
         public DbSet<F1Championship.Models.Teams> Teams { get; set; } = default!;
+
+        public DbSet<F1Championship.Models.Drivers> Drivers { get; set; } = default!;
+
+        public DbSet<F1Championship.Models.Leagues> Leagues { get; set; } = default!;
     }
 }
