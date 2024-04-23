@@ -39,7 +39,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>League ID</th>
+                    <th>League Number</th>
+                    <th>Team Number</th>
                     <th>Team Name</th>
                     <th>League</th>
                     <th>Edit</th>
@@ -53,6 +54,7 @@
                     {
                         <tr>
                             <td>@league.Id</td>
+                            <td>@league.TeamId</td>
                             <td>@league.Team</td>
                             <td>@league.League</td>
                             <td><a class="fancy-button" href="@Url.Action("Edit", "Leagues", new { id = league.Id } )">Edit</a></td>
