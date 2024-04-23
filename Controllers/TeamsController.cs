@@ -117,23 +117,56 @@ namespace F1Championship.Controllers
             return View(teams);
         }
 
+        //// GET: Teams/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null || _context.Teams == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var teams = await _context.Teams
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (teams == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(teams);
+        //}
+
+        // GET: Teams/Delete/5
         // GET: Teams/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Teams == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var teams = await _context.Teams
+            var team = await _context.Teams
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (teams == null)
+
+            if (team == null)
             {
                 return NotFound();
             }
 
-            return View(teams);
+            // Check if there are any drivers associated with this team
+            var hasDrivers = await _context.Drivers.AnyAsync(d => d.TeamId == id);
+            // Check if there are any leagues associated with this team
+            var hasLeagues = await _context.Leagues.AnyAsync(l => l.TeamId == id);
+
+            if (hasDrivers || hasLeagues)
+            {
+                // If there are associated drivers or leagues, set an error message
+                ViewData["ErrorMessage"] = "This team cannot be deleted as it has drivers or leagues associated with it.";
+            }
+
+            return View(team);
         }
+
+
 
         // POST: Teams/Delete/5
         [HttpPost, ActionName("Delete")]

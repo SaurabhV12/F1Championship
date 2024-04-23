@@ -361,3 +361,13 @@ const fastestLapChart = new Chart(ctx1, {
         }
     }
 });
+
+
+// deleteForm.js
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("deleteForm").addEventListener("submit", function (event) {
+        if (document.querySelector('.fancy-delete-button').classList.contains('disabled')) {
+            event.preventDefault();
+        }
+    });
+});
