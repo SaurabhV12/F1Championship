@@ -10,14 +10,24 @@ Formula One, commonly known as Formula 1 or F1, is the highest class of internat
 
 ## Home Page
 
+<img src="wwwroot/img/home.PNG">
+
 ## Teams Page
+
+<img src="wwwroot/img/team.PNG">
 
 ## Drivers Page
 
+<img src="wwwroot/img/drivers.PNG">
+
 ## Team Leagues Page
+
+<img src="wwwroot/img/team_leagues.PNG">
 
 ## Dashboards
 
+<img src="wwwroot/img/dashboards.PNG">
+
 ## About
 
-
+<img src="wwwroot/img/about.PNG">
