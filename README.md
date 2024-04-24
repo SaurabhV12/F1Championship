@@ -1,4 +1,4 @@
-# F1 Championship | Software Engineerng MVC Project 
+# F1 Championship | Software Engineering MVC Project 
 
 This project providescomprehensive online platform dedicated to the Formula 1 championship.
 
