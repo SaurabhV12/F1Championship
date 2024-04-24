@@ -6,6 +6,8 @@ Formula One, commonly known as Formula 1 or F1, is the highest class of internat
 
 ## Data Model
 
+<img src="wwwroot/img/data_model.png">
+
 ## Home Page
 
 ## Teams Page
