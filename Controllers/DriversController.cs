@@ -174,15 +174,5 @@ namespace F1Championship.Controllers
         {
           return (_context.Drivers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-
-        public IActionResult Create1()
-        {
-            return View();
-        }
-
-        public IActionResult Create2()
-        {
-            return View();
-        }
     }
 }
