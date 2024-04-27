@@ -179,5 +179,10 @@ namespace F1Championship.Controllers
         {
             return View();
         }
+
+        public IActionResult Create2()
+        {
+            return View();
+        }
     }
 }
